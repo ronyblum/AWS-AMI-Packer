@@ -1,0 +1,40 @@
+{
+	"variables": {
+		"aws_access_key_id": "{{env `AWS_ACCESS_KEY_ID`}}",
+		"aws_secret_access_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+		"aws_session_token": "{{env `AWS_SESSION_TOKEN`}}",
+		"time_zone": "{{env `TIME_ZONE`}}"
+	},
+	"builders": [
+	{
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_access_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "eu-west-1",
+		"source_ami": "ami-00035f41c82244dab",
+		"instance_type": "t2.micro",
+		"ssh_username": "ubuntu",
+		"associate_public_ip_address": "true",
+		"ami_name": "Basic Ubuntu with LAMP {{timestamp}}",
+		"tags": {
+			"Name": "Ubuntu With LAMP Image",
+			"SourceAMI": "ami-00035f41c82244dab"
+		}
+	}
+	],
+	"provisioners": [
+		{
+			"type": "ansible",
+			"playbook_file": "./ansible/lamp.yml",
+			"extra_arguments": "--become"
+		},
+		{
+			"type": "file",
+			"source": "files/firstrun.sh",
+			"destination": "/home/ubuntu/firstrun.sh"
+		}
+	],
+	"post-processors": []
+
+}

@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+          - name: Install Apache
+            become: true
+            apt: pkg=apache2 state=present update_cache=true
+            notify:
+                    - start apache
+  handlers:
+          - name: start apache
+            service: name=apache state=started
+

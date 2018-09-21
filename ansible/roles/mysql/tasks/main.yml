@@ -1,0 +1,30 @@
+---
+- name: 1. Install MySQL Server package
+  apt: name=mysql-server state=present update_cache=yes
+
+- name: 2. Start Mysql Service
+  service: name=mysql state=started enabled=true
+
+- name: 3. Install python Mysql package 
+  apt: name=python-mysqldb state=present
+
+- name: 4. Create a new database
+  mysql_db: name=ronydb state=present collation=utf8_general_ci
+
+- name: 5. Create a database user
+  mysql_user: name=rony password=Password1! priv=*.*:ALL host=localhost state=present
+
+- name: 6. Copy sample data
+  copy: src=dump.sql dest=/tmp/dump.sql
+
+- name: 7. Insert sample data
+  shell: cat /tmp/dump.sql | mysql -u rony -pPassword1! ronydb
+
+- name: 8. Install MySQL extension for PHP
+  apt: name=php-mysql state=present update_cache=yes
+
+- name: 9. Restart Apache
+  service: name=apache2 state=restarted
+
+- name: 10. install Hello World PHP script with database
+  copy: src=db.php dest=/var/www/html/db.php mode=0664

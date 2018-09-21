@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  roles:
+          - apache2
+          - mysql
+          - codedeploy
+  vars:
+          - codedeploy_agent_s3_download_bucket_name: aws-codedeploy-eu-west-1
+          - ansible_os_family: Debian
+          - codedeploy_agent_version: latest
+          - codedeploy_path: ./roles/codedeploy  
