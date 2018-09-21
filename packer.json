@@ -12,14 +12,14 @@
 		"secret_key": "{{user `aws_secret_access_key`}}",
 		"token": "{{user `aws_session_token`}}",
 		"region": "eu-west-1",
-		"source_ami": "ami-00035f41c82244dab",
+		"source_ami": "ami-0773391ae604c49a4",
 		"instance_type": "t2.micro",
 		"ssh_username": "ubuntu",
 		"associate_public_ip_address": "true",
-		"ami_name": "Basic Ubuntu with LAMP {{timestamp}}",
+		"ami_name": "Basic Ubuntu 16.04 with LAMP {{timestamp}}",
 		"tags": {
 			"Name": "Ubuntu With LAMP Image",
-			"SourceAMI": "ami-00035f41c82244dab"
+			"SourceAMI": "ami-0773391ae604c49a4"
 		}
 	}
 	],
