@@ -4,6 +4,7 @@ set -e
 sudo apt-get update
 echo "APT updated"
 sudo apt-get -y upgrade
+echo "Starting Python, Git install"
 sudo apt-get install -y python-dev python-pip git
 sudo pip install ansible
 sudo timedatectl set-timezone Asia/Jerusalem
