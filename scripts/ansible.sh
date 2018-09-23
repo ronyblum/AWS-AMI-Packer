@@ -13,4 +13,4 @@ cd AWS-AMI-Packer/ansible
 echo "Running Ansible Playbook"
 sudo ansible-playbook lamp.yml
 echo "Installation completed. Removing ansible playbook"
-rm -rf ~/AWS-AMI-Packer
+sudo rm -rf ~/AWS-AMI-Packer
