@@ -25,14 +25,9 @@
 	],
 	"provisioners": [
 		{
-			"type": "ansible",
-			"playbook_file": "./ansible/lamp.yml",
-			"extra_arguments": "--become"
-		},
-		{
-			"type": "file",
-			"source": "files/firstrun.sh",
-			"destination": "/home/ubuntu/firstrun.sh"
+			"type": "shell",
+			"script": "scripts/ansible.sh"
+
 		}
 	],
 	"post-processors": []
